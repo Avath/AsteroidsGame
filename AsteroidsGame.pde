@@ -1,37 +1,51 @@
-//your variable declarations here
+SpaceShip tt;
 public void setup() 
 {
-  //your code here
+  size(400,400); 
+  tt=new SpaceShip();
+
 }
 public void draw() 
 {
-  //your code here
+  background(0);
+  tt.show();
+}
+
+public void keyPressed() {
+  
 }
 class SpaceShip extends Floater  
 {    
 
 
 
-  SpaceShip(){
+  public void SpaceShip(){
 
     corners=6;
-     int[]xS ={-9, 16, }
-
-
-
+      int[] xS ={-9, 16, -9, -8, -2, -8};
+      int[] yS ={-8, 0, 8, 4, 0, -4};
+      xCorners=xS;
+      yCorners=yS;
+      myColor= 225;
+      myCenterX=200;
+      myCenterY=200;
+      myDirectionX=5;
+      myDirectionY=5;
+      myPointDirection=0;
+  
   }
-
+ 
 
 
 
    public void setX(int x)  {myCenterX=x;}
-   public int getX()   {return myCenterX;}
+   public int getX()   {return (int)myCenterX;}
    public void setY(int y)  {myCenterY=y;}   
-   public int getY()   {return myCenterY }
+   public int getY()   {return (int)myCenterY ;}
    public void setDirectionX(double x) {myDirectionX=x; }  
-   public double getDirectionX()   {return myDirectionX}
-   public void setDirectionX(double y) {myDirectionY=y; }  
-   public double getDirectionY()   {return myDirectionY} 
+   public double getDirectionX()   {return myDirectionX;}
+   public void setDirectionY(double y) {myDirectionY=y; }  
+   public double getDirectionY()   {return myDirectionY;} 
    public void setPointDirection(int degrees)  {myPointDirection=degrees;} 
    public double getPointDirection() {return myPointDirection;}
 }

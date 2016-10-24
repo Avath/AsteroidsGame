@@ -1,36 +1,100 @@
-SpaceShip tt;
+SpaceShip tt=new SpaceShip();
+Star [] qq;
 public void setup() 
 {
   size(400,400); 
-  tt=new SpaceShip();
+  qq= new Star[1000];
+
+  for(int i=0;i<qq.length;i++){
+qq[i] =new Star();
+
+}
 
 }
 public void draw() 
 {
   background(0);
-  tt.show();
+  for(int i=0;i<qq.length;i++){
+qq[i].show();
+
+}
+  tt.move();
+  tt.accelerate(0);
+  tt. rotate(0);
+ tt.show();
+
+
+
 }
 
 public void keyPressed() {
+ if( keyCode==65)
+  {tt.rotate(-5);}
   
+if( keyCode==68) 
+  {tt.rotate(5);}
+ 
+if( keyCode==83)
+  {tt.accelerate(-0.5);}
+if( keyCode==87)
+  {tt.accelerate(0.5);}
+if(keyCode==32)
+  { tt.setDirectionX(0);
+    tt.setDirectionY(0);
+    tt.setX((int)(Math.random()*401));
+    tt.setY((int)(Math.random()*401));
+  }
+
+} 
+
+
+class Star extends Floater
+{
+
+  public Star(){
+
+    myCenterX=(int)(Math.random()*401);
+    myCenterY=(int)(Math.random()*401);
+  
+  }
+
+  public void show(){
+   
+    noStroke();
+    fill((int)(Math.random()*226),(int)(Math.random()*226),(int)(Math.random()*226));
+    ellipse((float)myCenterX,(float)myCenterY,3,3);
+
+
+
+  }
+
+  public void setX(int x)  {myCenterX=x;}
+   public int getX()   {return (int)myCenterX;}
+   public void setY(int y)  {myCenterY=y;}   
+   public int getY()   {return (int)myCenterY ;}
+   public void setDirectionX(double x) {myDirectionX=x; }  
+   public double getDirectionX()   {return myDirectionX;}
+   public void setDirectionY(double y) {myDirectionY=y; }  
+   public double getDirectionY()   {return myDirectionY;} 
+   public void setPointDirection(int degrees)  {myPointDirection=degrees;} 
+   public double getPointDirection() {return myPointDirection;}
 }
+
 class SpaceShip extends Floater  
 {    
 
-
-
-  public void SpaceShip(){
+  public SpaceShip(){
 
     corners=6;
       int[] xS ={-9, 16, -9, -8, -2, -8};
       int[] yS ={-8, 0, 8, 4, 0, -4};
       xCorners=xS;
       yCorners=yS;
-      myColor= 225;
+      myColor=color (225,225,225);
       myCenterX=200;
       myCenterY=200;
-      myDirectionX=5;
-      myDirectionY=5;
+      myDirectionX=0;
+      myDirectionY=0;
       myPointDirection=0;
   
   }
@@ -123,6 +187,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       vertex(xRotatedTranslated,yRotatedTranslated);    
     }   
     endShape(CLOSE);  
+    
   }   
 } 
 

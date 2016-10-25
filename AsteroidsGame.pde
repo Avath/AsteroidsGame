@@ -2,8 +2,8 @@ SpaceShip tt=new SpaceShip();
 Star [] qq;
 public void setup() 
 {
-  size(400,400); 
-  qq= new Star[1000];
+  size(800, 800); 
+  qq= new Star[2000];
 
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
@@ -28,21 +28,21 @@ qq[i].show();
 }
 
 public void keyPressed() {
- if( keyCode==65)
+ if( keyCode==LEFT)
   {tt.rotate(-5);}
   
-if( keyCode==68) 
+if( keyCode==RIGHT) 
   {tt.rotate(5);}
  
-if( keyCode==83)
+if( keyCode==DOWN)
   {tt.accelerate(-0.5);}
-if( keyCode==87)
+if( keyCode==UP)
   {tt.accelerate(0.5);}
-if(keyCode==32)
+if(keyCode==70)
   { tt.setDirectionX(0);
     tt.setDirectionY(0);
-    tt.setX((int)(Math.random()*401));
-    tt.setY((int)(Math.random()*401));
+    tt.setX((int)(Math.random()*801));
+    tt.setY((int)(Math.random()*801));
   }
 
 } 
@@ -53,8 +53,8 @@ class Star extends Floater
 
   public Star(){
 
-    myCenterX=(int)(Math.random()*401);
-    myCenterY=(int)(Math.random()*401);
+    myCenterX=(int)(Math.random()*801);
+    myCenterY=(int)(Math.random()*801);
   
   }
 
@@ -91,8 +91,8 @@ class SpaceShip extends Floater
       xCorners=xS;
       yCorners=yS;
       myColor=color (225,225,225);
-      myCenterX=200;
-      myCenterY=200;
+      myCenterX=400;
+      myCenterY=400;
       myDirectionX=0;
       myDirectionY=0;
       myPointDirection=0;

@@ -1,5 +1,6 @@
 SpaceShip tt=new SpaceShip();
 Star [] qq;
+boolean screenLock= false;
 public void setup() 
 {
   size(800, 800); 
@@ -15,8 +16,11 @@ public void draw()
 {
   background(0);
   for(int i=0;i<qq.length;i++){
-qq[i].show();
 
+qq[i].move();
+qq[i].accelerate(0);
+ qq[i].setPointDirection((int)tt.getPointDirection());
+ qq[i].show();
 }
   tt.move();
   tt.accelerate(0);
@@ -28,6 +32,28 @@ qq[i].show();
 }
 
 public void keyPressed() {
+  if(screenLock==true){
+ if( keyCode==LEFT)
+  {tt.rotate(-5);}
+  
+if( keyCode==RIGHT) 
+  {tt.rotate(5);}
+ for(int i=0;i<qq.length;i++){
+if( keyCode==DOWN)
+  {qq[i].accelerate(0.5);}
+if( keyCode==UP)
+  {qq[i].accelerate(-0.5);}
+if(keyCode==70)
+  { 
+
+
+    qq[i].setDirectionX(0);
+    qq[i].setDirectionY(0);
+    
+  }
+}
+}
+if(screenLock==false){
  if( keyCode==LEFT)
   {tt.rotate(-5);}
   
@@ -45,6 +71,21 @@ if(keyCode==70)
     tt.setY((int)(Math.random()*801));
   }
 
+}
+
+if(keyCode==84&&screenLock==true){
+  screenLock=false;
+} 
+ if (keyCode==32&&screenLock==false){
+
+  screenLock=true;
+ 
+tt.setX(400);
+tt.setY(400);
+
+}
+
+
 } 
 
 
@@ -53,8 +94,10 @@ class Star extends Floater
 
   public Star(){
 
-    myCenterX=(int)(Math.random()*801);
-    myCenterY=(int)(Math.random()*801);
+    myCenterX=(Math.random()*801);
+    myCenterY=(Math.random()*801);
+    myDirectionX=0;
+    myDirectionY=0;
   
   }
 

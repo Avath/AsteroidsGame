@@ -15,19 +15,23 @@ qq[i] =new Star();
 public void draw() 
 {
   background(0);
+  tt.move();
+  tt.accelerate(0);
+  tt. rotate(0);
+ tt.show();
   for(int i=0;i<qq.length;i++){
 
 qq[i].move();
 qq[i].accelerate(0);
  qq[i].setPointDirection((int)tt.getPointDirection());
  qq[i].show();
+
+if(screenLock==false&&((tt.getY()==0)||(tt.getX()==width))){qq[i].accelerate(-0.5);}
+else if(screenLock==false&&((tt.getY()==height)||(tt.getX()==0))){qq[i].accelerate(0.5);}
+if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){qq[i].setDirectionX(0);
+    qq[i].setDirectionY(0);}
 }
-  tt.move();
-  tt.accelerate(0);
-  tt. rotate(0);
- tt.show();
-
-
+  
 
 }
 
@@ -35,7 +39,7 @@ public void keyPressed() {
   if(screenLock==true){
  if( keyCode==LEFT)
   {tt.rotate(-5);}
-  
+    
 if( keyCode==RIGHT) 
   {tt.rotate(5);}
  for(int i=0;i<qq.length;i++){
@@ -87,7 +91,7 @@ tt.setY(400);
 
 
 } 
-
+ 
 
 class Star extends Floater
 {
@@ -96,10 +100,12 @@ class Star extends Floater
 
     myCenterX=(Math.random()*801);
     myCenterY=(Math.random()*801);
-    myDirectionX=0;
-    myDirectionY=0;
+     myDirectionX=0;
+     myDirectionY=0;
   
   }
+
+  
 
   public void show(){
    
@@ -141,6 +147,31 @@ class SpaceShip extends Floater
       myPointDirection=0;
   
   }
+
+  public void move ()   //move the floater in the current direction of travel
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+
+    //wrap around screen    
+    if(myCenterX >width)
+    {     
+      myCenterX = width;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = 0;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = height;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = 0;    
+    }   
+  }   
  
 
 

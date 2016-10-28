@@ -26,8 +26,10 @@ qq[i].accelerate(0);
  qq[i].setPointDirection((int)tt.getPointDirection());
  qq[i].show();
 
-if(screenLock==false&&((tt.getY()==0)||(tt.getX()==width))){qq[i].accelerate(-0.5);}
-else if(screenLock==false&&((tt.getY()==height)||(tt.getX()==0))){qq[i].accelerate(0.5);}
+if(screenLock==false&&(tt.getX()==width)){qq[i].setDirectionX(-0.5);}
+if(screenLock==false&&(tt.getX()==0)){qq[i].setDirectionX(0.5);}
+if(screenLock==false&&(tt.getY()==0)){qq[i].setDirectionY(0.5);}
+if(screenLock==false&&(tt.getY()==height)){qq[i].setDirectionY(-0.5);}
 if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){qq[i].setDirectionX(0);
     qq[i].setDirectionY(0);}
 }
@@ -74,6 +76,11 @@ if(keyCode==70)
     tt.setX((int)(Math.random()*801));
     tt.setY((int)(Math.random()*801));
   }
+ if(keyCode==83) {
+tt.setDirectionX(0);
+tt.setDirectionY(0);
+
+ }
 
 }
 

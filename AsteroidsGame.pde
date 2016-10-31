@@ -49,7 +49,7 @@ if( keyCode==DOWN)
   {qq[i].accelerate(0.5);}
 if( keyCode==UP)
   {qq[i].accelerate(-0.5);}
-if(keyCode==70)
+if(keyCode==83)
   { 
 
 
@@ -164,19 +164,23 @@ class SpaceShip extends Floater
     //wrap around screen    
     if(myCenterX >width)
     {     
-      myCenterX = width;    
+      myCenterX = width; 
+      myDirectionX=0;   
     }    
     else if (myCenterX<0)
     {     
-      myCenterX = 0;    
+      myCenterX = 0;  
+      myDirectionX=0;  
     }    
     if(myCenterY >height)
     {    
-      myCenterY = height;    
+      myCenterY = height; 
+      myDirectionY=0;   
     }   
     else if (myCenterY < 0)
     {     
-      myCenterY = 0;    
+      myCenterY = 0;  
+      myDirectionY=0;  
     }   
   }   
  
@@ -194,6 +198,50 @@ class SpaceShip extends Floater
    public void setPointDirection(int degrees)  {myPointDirection=degrees;} 
    public double getPointDirection() {return myPointDirection;}
 }
+
+class Asteroids extends Floater{
+ private int spin;
+
+public Asteroids(){
+
+myCenterX=(int)(Math.random()*801);
+myCenterY=(int)(Math.random()*801);
+spin=(int)((Math.random()*21)-10);
+
+
+}
+public void move(){
+
+rotate(spin);
+
+
+
+}
+
+public void show(){
+
+fill(20,20,0);
+
+
+
+}
+
+
+public void setX(int x)  {myCenterX=x;}
+public int getX()   {return (int)myCenterX;}
+public void setY(int y)  {myCenterY=y;}   
+public int getY()   {return (int)myCenterY ;}
+public void setDirectionX(double x) {myDirectionX=x; }  
+public double getDirectionX()   {return myDirectionX;}
+public void setDirectionY(double y) {myDirectionY=y; }  
+public double getDirectionY()   {return myDirectionY;} 
+public void setPointDirection(int degrees)  {myPointDirection=degrees;} 
+public double getPointDirection() {return myPointDirection;}
+
+
+}
+
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   

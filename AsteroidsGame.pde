@@ -1,13 +1,20 @@
 SpaceShip tt=new SpaceShip();
 Star [] qq;
+Asteroids [] ww;
 boolean screenLock= false;
 public void setup() 
 {
   size(800, 800); 
   qq= new Star[2000];
+  ww= new Asteroids[20];
 
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
+
+}
+
+for(int i=0;i<ww.length;i++){
+ww[i] =new Asteroids();
 
 }
 
@@ -33,7 +40,11 @@ if(screenLock==false&&(tt.getY()==height)){qq[i].setDirectionY(-0.5);}
 if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){qq[i].setDirectionX(0);
     qq[i].setDirectionY(0);}
 }
-  
+  for(int i=0;i<ww.length;i++){
+ww[i].move();
+ww[i].show();
+
+}
 
 }
 
@@ -155,9 +166,9 @@ class SpaceShip extends Floater
   
   }
 
-  public void move ()   //move the floater in the current direction of travel
+  public void move ()   
   {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
+   
     myCenterX += myDirectionX;    
     myCenterY += myDirectionY;     
 
@@ -207,20 +218,28 @@ public Asteroids(){
 myCenterX=(int)(Math.random()*801);
 myCenterY=(int)(Math.random()*801);
 spin=(int)((Math.random()*21)-10);
-
+myColor= color(20,20,0);
+corners=8;
+int[] xS ={-9, -7, -9, 0, 4, 11, 4, -2};
+int[] yS ={-8, 0, 8, 13, 3, -1, -8, -11};
+myDirectionX=0;
+myDirectionY=0;
+myPointDirection=0;
+xCorners=xS;
+yCorners=yS;
 
 }
 public void move(){
 
 rotate(spin);
-
+super.move();
 
 
 }
 
 public void show(){
+super.show();
 
-fill(20,20,0);
 
 
 

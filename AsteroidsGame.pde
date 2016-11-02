@@ -6,7 +6,7 @@ public void setup()
 {
   size(800, 800); 
   qq= new Star[2000];
-  ww= new Asteroids[20];
+  ww= new Asteroids[100];
 
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
@@ -23,8 +23,9 @@ public void draw()
 {
   background(0);
   tt.move();
-  tt.accelerate(0);
   tt. rotate(0);
+  tt.accelerate(0);
+  
  tt.show();
   for(int i=0;i<qq.length;i++){
 
@@ -35,7 +36,7 @@ qq[i].accelerate(0);
 
 if(screenLock==false&&(tt.getX()==width)){qq[i].setDirectionX(-0.5);}
 if(screenLock==false&&(tt.getX()==0)){qq[i].setDirectionX(0.5);}
-if(screenLock==false&&(tt.getY()==0)){qq[i].setDirectionY(0.5);}
+if(screenLock==false&&(tt.getY()==5)){qq[i].setDirectionY(0.5);}
 if(screenLock==false&&(tt.getY()==height)){qq[i].setDirectionY(-0.5);}
 if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){qq[i].setDirectionX(0);
     qq[i].setDirectionY(0);}
@@ -68,7 +69,7 @@ if(keyCode==83)
     qq[i].setDirectionY(0);
     
   }
-}
+}   
 }
 if(screenLock==false){
  if( keyCode==LEFT)
@@ -78,14 +79,15 @@ if( keyCode==RIGHT)
   {tt.rotate(5);}
  
 if( keyCode==DOWN)
-  {tt.accelerate(-0.5);}
+  {tt.accelerate(-0.2);}
 if( keyCode==UP)
-  {tt.accelerate(0.5);}
+  {tt.accelerate(0.2);}
 if(keyCode==70)
   { tt.setDirectionX(0);
     tt.setDirectionY(0);
     tt.setX((int)(Math.random()*801));
     tt.setY((int)(Math.random()*801));
+    tt.setPointDirection((int)(Math.random()*361));
   }
  if(keyCode==83) {
 tt.setDirectionX(0);
@@ -93,9 +95,9 @@ tt.setDirectionY(0);
 
  }
 
-}
+}  
 
-if(keyCode==84&&screenLock==true){
+if(keyCode==89&&screenLock==true){
   screenLock=false;
 } 
  if (keyCode==32&&screenLock==false){
@@ -128,7 +130,7 @@ class Star extends Floater
   public void show(){
    
     noStroke();
-    fill((int)(Math.random()*226),(int)(Math.random()*226),(int)(Math.random()*226));
+    fill((int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*200));
     ellipse((float)myCenterX,(float)myCenterY,3,3);
 
 
@@ -176,22 +178,26 @@ class SpaceShip extends Floater
     if(myCenterX >width)
     {     
       myCenterX = width; 
-      myDirectionX=0;   
+      myDirectionX=0;
+      myDirectionY=0;   
     }    
-    else if (myCenterX<0)
+   if (myCenterX<0)
     {     
       myCenterX = 0;  
-      myDirectionX=0;  
+      myDirectionX=0; 
+      myDirectionY=0; 
     }    
     if(myCenterY >height)
     {    
       myCenterY = height; 
-      myDirectionY=0;   
+      myDirectionY=0;
+       myDirectionX=0;   
     }   
-    else if (myCenterY < 0)
+    if (myCenterY < 0)
     {     
       myCenterY = 0;  
-      myDirectionY=0;  
+      myDirectionY=0; 
+       myDirectionX=0; 
     }   
   }   
  
@@ -218,7 +224,7 @@ public Asteroids(){
 myCenterX=(int)(Math.random()*801);
 myCenterY=(int)(Math.random()*801);
 spin=(int)((Math.random()*21)-10);
-myColor= color(20,20,0);
+myColor= color(40,40,0);
 corners=8;
 int[] xS ={-9, -7, -9, 0, 4, 11, 4, -2};
 int[] yS ={-8, 0, 8, 13, 3, -1, -8, -11};

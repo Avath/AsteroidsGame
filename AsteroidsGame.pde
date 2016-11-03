@@ -44,7 +44,9 @@ if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(
   for(int i=0;i<ww.length;i++){
 ww[i].move();
 ww[i].show();
-
+ww[i].setDirectionX(0.2); 
+ww[i].setDirectionY(0.2);    
+ww[i].accelerate(0);
 }
 
 }
@@ -57,19 +59,27 @@ public void keyPressed() {
 if( keyCode==RIGHT) 
   {tt.rotate(5);}
  for(int i=0;i<qq.length;i++){
+  for(int j=0;j<ww.length;j++){
 if( keyCode==DOWN)
-  {qq[i].accelerate(0.5);}
+  {qq[i].accelerate(0.5);
+    ww[j].accelerate(0.5);
+  }
 if( keyCode==UP)
-  {qq[i].accelerate(-0.5);}
+  {qq[i].accelerate(-0.5);
+ww[j].accelerate(-0.5);
+  }
 if(keyCode==83)
   { 
-
+ 
 
     qq[i].setDirectionX(0);
     qq[i].setDirectionY(0);
+    ww[j].setDirectionX(0);
+    ww[j].setDirectionY(0);
     
   }
 }   
+}
 }
 if(screenLock==false){
  if( keyCode==LEFT)

@@ -1,4 +1,5 @@
 SpaceShip tt=new SpaceShip();
+SpaceShip rr=new SpaceShip();
 Star [] qq;
 Asteroids [] ww;
 boolean screenLock= false;
@@ -22,64 +23,68 @@ ww[i] =new Asteroids();
 public void draw() 
 {
   background(0);
-  tt.move();
-  tt. rotate(0);
-  tt.accelerate(0);
   
- tt.show();
   for(int i=0;i<qq.length;i++){
 
 qq[i].move();
-qq[i].accelerate(0);
- qq[i].setPointDirection((int)tt.getPointDirection());
+
  qq[i].show();
 
-if(screenLock==false&&(tt.getX()==width)){qq[i].setDirectionX(-0.5);}
-if(screenLock==false&&(tt.getX()==0)){qq[i].setDirectionX(0.5);}
-if(screenLock==false&&(tt.getY()==5)){qq[i].setDirectionY(0.5);}
-if(screenLock==false&&(tt.getY()==height)){qq[i].setDirectionY(-0.5);}
-if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){qq[i].setDirectionX(0);
-    qq[i].setDirectionY(0);}
 }
   for(int i=0;i<ww.length;i++){
 ww[i].move();
 ww[i].show();
-ww[i].setDirectionX(0.2); 
-ww[i].setDirectionY(0.2);    
-ww[i].accelerate(0);
+    
+ww[i].accelerate(0); 
+ww[i].rotate((int)(Math.random()*21)-10);
+if(screenLock==false&&(tt.getX()==width)){ww[i].setDirectionX(-0.5);}
+if(screenLock==false&&(tt.getX()==0)){ww[i].setDirectionX(0.5);}
+if(screenLock==false&&(tt.getY()==0)){ww[i].setDirectionY(0.5);}
+if(screenLock==false&&(tt.getY()==height)){ww[i].setDirectionY(-0.5);}
+if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){ww[i].setDirectionX(0);
+    ww[i].setDirectionY(0);}
 }
 
+tt.move();
+  tt.rotate(0);
+  tt.accelerate(0);
+  
+ tt.show();
+ rr.rotate(0);
+ rr.accelerate(0);    
 }
 
 public void keyPressed() {
   if(screenLock==true){
  if( keyCode==LEFT)
-  {tt.rotate(-5);}
+  {tt.rotate(-5);
+    rr.rotate(-5);}
     
 if( keyCode==RIGHT) 
-  {tt.rotate(5);}
- for(int i=0;i<qq.length;i++){
+  {tt.rotate(5);
+  rr.rotate(5);}
+
+ 
   for(int j=0;j<ww.length;j++){
 if( keyCode==DOWN)
-  {qq[i].accelerate(0.5);
-    ww[j].accelerate(0.5);
+  {
+    ww[j].accelerate(0.01);
   }
-if( keyCode==UP)
-  {qq[i].accelerate(-0.5);
-ww[j].accelerate(-0.5);
+if( keyCode==UP) 
+  {
+  ww[j].accelerate(-0.01);
   }
 if(keyCode==83)
   { 
  
 
-    qq[i].setDirectionX(0);
-    qq[i].setDirectionY(0);
+    
     ww[j].setDirectionX(0);
     ww[j].setDirectionY(0);
     
   }
 }   
-}
+
 }
 if(screenLock==false){
  if( keyCode==LEFT)

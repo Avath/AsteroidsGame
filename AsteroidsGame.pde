@@ -1,23 +1,23 @@
 SpaceShip tt=new SpaceShip();
 SpaceShip rr=new SpaceShip();
 Star [] qq;
-Asteroids [] ww;
+ArrayList <Asteroids> ww;
 boolean screenLock= false;
 public void setup() 
 {
   size(800, 800); 
   qq= new Star[2000];
-  ww= new Asteroids[100];
+  ww= new ArrayList <Asteroids> ();
 
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
-
+  
 }
 
-for(int i=0;i<ww.length;i++){
-ww[i] =new Asteroids();
+for(int i=0;i<200;i++){
+ww.add
 
-}
+}  
 
 }
 public void draw() 
@@ -33,6 +33,8 @@ qq[i].move();
 }
   for(int i=0;i<ww.length;i++){
 ww[i].move();
+ww[i].setDirectionX(rr.getDirectionX());
+ww[i].setDirectionY(rr.getDirectionY());
 ww[i].show();
     
 ww[i].accelerate(0); 
@@ -51,7 +53,9 @@ tt.move();
   
  tt.show();
  rr.rotate(0);
- rr.accelerate(0);    
+ rr.move();
+ rr.accelerate(0);  
+ 
 }
 
 public void keyPressed() {
@@ -68,11 +72,13 @@ if( keyCode==RIGHT)
   for(int j=0;j<ww.length;j++){
 if( keyCode==DOWN)
   {
-    ww[j].accelerate(0.01);
+    
+    rr.accelerate(00.1);
   }
 if( keyCode==UP) 
   {
-  ww[j].accelerate(-0.01);
+  
+  rr.accelerate(-00.1);
   }
 if(keyCode==83)
   { 

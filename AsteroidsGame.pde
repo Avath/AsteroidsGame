@@ -1,13 +1,13 @@
 SpaceShip tt=new SpaceShip();
 SpaceShip rr=new SpaceShip();
 Star [] qq;
-ArrayList <Asteroids> ww;
+ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
 boolean screenLock= false;
 public void setup() 
 {
   size(800, 800); 
   qq= new Star[2000];
-  ww= new ArrayList <Asteroids> ();
+ 
 
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
@@ -15,7 +15,7 @@ qq[i] =new Star();
 }
 
 for(int i=0;i<200;i++){
-ww.add
+ww.add (i, new Asteroids());
 
 }  
 
@@ -31,20 +31,20 @@ qq[i].move();
  qq[i].show();
 
 }
-  for(int i=0;i<ww.length;i++){
-ww[i].move();
-ww[i].setDirectionX(rr.getDirectionX());
-ww[i].setDirectionY(rr.getDirectionY());
-ww[i].show();
+  for(int i=0;i<ww.size();i++){
+ww.get(i).move();
+ww.get(i).setDirectionX(rr.getDirectionX());
+ww.get(i).setDirectionY(rr.getDirectionY());
+ww.get(i).show();
     
-ww[i].accelerate(0); 
-ww[i].rotate((int)(Math.random()*21)-10);
-if(screenLock==false&&(tt.getX()==width)){ww[i].setDirectionX(-0.5);}
-if(screenLock==false&&(tt.getX()==0)){ww[i].setDirectionX(0.5);}
-if(screenLock==false&&(tt.getY()==0)){ww[i].setDirectionY(0.5);}
-if(screenLock==false&&(tt.getY()==height)){ww[i].setDirectionY(-0.5);}
-if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){ww[i].setDirectionX(0);
-    ww[i].setDirectionY(0);}
+ww.get(i).accelerate(0); 
+ww.get(i).rotate((int)(Math.random()*21)-10);
+if(screenLock==false&&(tt.getX()==width)){ww.get(i).setDirectionX(-0.5);}
+if(screenLock==false&&(tt.getX()==0)){ww.get(i).setDirectionX(0.5);}
+if(screenLock==false&&(tt.getY()==0)){ww.get(i).setDirectionY(0.5);}
+if(screenLock==false&&(tt.getY()==height)){ww.get(i).setDirectionY(-0.5);}
+if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){ww.get(i).setDirectionX(0);
+    ww.get(i).setDirectionY(0);}
 }
 
 tt.move();
@@ -69,7 +69,7 @@ if( keyCode==RIGHT)
   rr.rotate(5);}
 
  
-  for(int j=0;j<ww.length;j++){
+  for(int j=0;j<ww.size();j++){
 if( keyCode==DOWN)
   {
     
@@ -85,8 +85,8 @@ if(keyCode==83)
  
 
     
-    ww[j].setDirectionX(0);
-    ww[j].setDirectionY(0);
+    ww.get(j).setDirectionX(0);
+    ww.get(j).setDirectionY(0);
     
   }
 }   

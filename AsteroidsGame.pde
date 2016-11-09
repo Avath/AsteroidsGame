@@ -2,7 +2,7 @@ SpaceShip tt=new SpaceShip();
 SpaceShip rr=new SpaceShip();
 Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
-boolean screenLock= false;
+public  boolean screenLock= false;
 public void setup() 
 {
   size(800, 800); 
@@ -26,18 +26,21 @@ public void draw()
   
   for(int i=0;i<qq.length;i++){
 
-qq[i].move();
 
  qq[i].show();
 
 }
   for(int i=0;i<ww.size();i++){
 ww.get(i).move();
-ww.get(i).setDirectionX(rr.getDirectionX());
-ww.get(i).setDirectionY(rr.getDirectionY());
+if(screenLock==true){
+ww.get(i).setDirectionX(-rr.getDirectionX());
+ww.get(i).setDirectionY(-rr.getDirectionY());
+}
+ww.get(i).accelerate(0);
+
 ww.get(i).show();
     
-ww.get(i).accelerate(0); 
+ 
 ww.get(i).rotate((int)(Math.random()*21)-10);
 if(screenLock==false&&(tt.getX()==width)){ww.get(i).setDirectionX(-0.5);}
 if(screenLock==false&&(tt.getX()==0)){ww.get(i).setDirectionX(0.5);}
@@ -53,9 +56,18 @@ tt.move();
   
  tt.show();
  rr.rotate(0);
- rr.move();
+ rr.move(); 
  rr.accelerate(0);  
- 
+ for(int i=0;i<ww.size();i++){
+  Double distance =Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
+if((distance<20)){
+
+ww.remove(i);
+i--;
+}  
+
+
+}
 }
 
 public void keyPressed() {
@@ -69,16 +81,16 @@ if( keyCode==RIGHT)
   rr.rotate(5);}
 
  
-  for(int j=0;j<ww.size();j++){
+  for(int j=0;j<ww.size() ;j++){
 if( keyCode==DOWN)
   {
     
-    rr.accelerate(00.1);
+    rr.accelerate(-00.1);
   }
 if( keyCode==UP) 
   {
   
-  rr.accelerate(-00.1);
+  rr.accelerate(00.1);
   }
 if(keyCode==83)
   { 
@@ -124,7 +136,13 @@ if(keyCode==89&&screenLock==true){
  if (keyCode==32&&screenLock==false){
 
   screenLock=true;
- 
+  tt.setDirectionX(0);
+    tt.setDirectionY(0);
+    tt.setPointDirection(0);
+    for(int i=0;i<ww.size();i++){
+  ww.get(i).setDirectionX(0);
+    ww.get(i).setDirectionY(0);
+  }
 tt.setX(400);
 tt.setY(400);
 

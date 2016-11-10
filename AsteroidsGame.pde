@@ -2,7 +2,7 @@ SpaceShip tt=new SpaceShip();
 SpaceShip rr=new SpaceShip();
 Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
-public  boolean screenLock= false;
+public  boolean screenLock= true;
 public void setup() 
 {
   size(800, 800); 
@@ -36,7 +36,7 @@ if(screenLock==true){
 ww.get(i).setDirectionX(-rr.getDirectionX());
 ww.get(i).setDirectionY(-rr.getDirectionY());
 }
-ww.get(i).accelerate(0);
+
 
 ww.get(i).show();
     
@@ -57,7 +57,7 @@ tt.move();
  tt.show();
  rr.rotate(0);
  rr.move(); 
- rr.accelerate(0);  
+  
  for(int i=0;i<ww.size();i++){
   Double distance =Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
 if((distance<20)){
@@ -104,7 +104,7 @@ if(keyCode==83)
 }   
 
 }
-if(screenLock==false){
+/*if(screenLock==false){
  if( keyCode==LEFT)
   {tt.rotate(-5);}
   
@@ -128,7 +128,7 @@ tt.setDirectionY(0);
 
  }
 
-}  
+}  */
 
 if(keyCode==89&&screenLock==true){
   screenLock=false;

@@ -17,7 +17,7 @@ qq[i] =new Star();
 for(int i=0;i<200;i++){
 ww.add (i, new Asteroids());
 
-}  
+}   
 
 }
 public void draw() 
@@ -44,7 +44,7 @@ ww.get(i).show();
 ww.get(i).rotate((int)(Math.random()*21)-10);
 if(screenLock==false&&(tt.getX()==width)){ww.get(i).setDirectionX(-0.5);}
 if(screenLock==false&&(tt.getX()==0)){ww.get(i).setDirectionX(0.5);}
-if(screenLock==false&&(tt.getY()==0)){ww.get(i).setDirectionY(0.5);}
+if(screenLock==false&&(tt.getY()==height-height)){ww.get(i).setDirectionY(0.5);}
 if(screenLock==false&&(tt.getY()==height)){ww.get(i).setDirectionY(-0.5);}
 if(screenLock==false&&(tt.getY()!=height)&&(tt.getX()!=width)&&(tt.getX()!=0)&&(tt.getX()!=0)){ww.get(i).setDirectionX(0);
     ww.get(i).setDirectionY(0);}
@@ -56,7 +56,7 @@ tt.move();
   
  tt.show();
  rr.rotate(0);
- rr.move(); 
+ rr.move2(); 
   
  for(int i=0;i<ww.size();i++){
   Double distance =Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
@@ -85,12 +85,12 @@ if( keyCode==RIGHT)
 if( keyCode==DOWN)
   {
     
-    rr.accelerate(-00.1);
+    rr.accelerate(-00.001);
   }
 if( keyCode==UP) 
   {
   
-  rr.accelerate(00.1);
+  rr.accelerate(00.001);
   }
 if(keyCode==83)
   { 
@@ -99,12 +99,13 @@ if(keyCode==83)
     
     ww.get(j).setDirectionX(0);
     ww.get(j).setDirectionY(0);
-    
+    rr.setDirectionX(0);
+    rr.setDirectionY(0);
   }
 }   
 
 }
-/*if(screenLock==false){
+if(screenLock==false){
  if( keyCode==LEFT)
   {tt.rotate(-5);}
   
@@ -128,7 +129,7 @@ tt.setDirectionY(0);
 
  }
 
-}  */
+}  
 
 if(keyCode==89&&screenLock==true){
   screenLock=false;
@@ -151,6 +152,46 @@ tt.setY(400);
 
 } 
  
+
+
+class Bullet extends Floater{
+
+
+
+public Bullet()  {
+
+myCenterX=
+
+
+
+
+
+
+
+
+
+}
+
+   public void setX(int x)  {myCenterX=x;}
+   public int getX()   {return (int)myCenterX;}
+   public void setY(int y)  {myCenterY=y;}   
+   public int getY()   {return (int)myCenterY ;}
+   public void setDirectionX(double x) {myDirectionX=x; }  
+   public double getDirectionX()   {return myDirectionX;}
+   public void setDirectionY(double y) {myDirectionY=y; }  
+   public double getDirectionY()   {return myDirectionY;} 
+   public void setPointDirection(int degrees)  {myPointDirection=degrees;} 
+   public double getPointDirection() {return myPointDirection;}
+}
+
+
+
+
+
+
+
+
+
 
 class Star extends Floater
 {
@@ -239,7 +280,30 @@ class SpaceShip extends Floater
        myDirectionX=0; 
     }   
   }   
- 
+  public void move2 ()   
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+
+    //wrap around screen    
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
+  }   
 
 
 

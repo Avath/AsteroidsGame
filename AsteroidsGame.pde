@@ -2,6 +2,7 @@ SpaceShip tt=new SpaceShip();
 SpaceShip rr=new SpaceShip();
 Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
+ArrayList <Bullet> speed =new ArrayList <Bullet> (); 
 public  boolean screenLock= true;
 public void setup() 
 {
@@ -159,18 +160,36 @@ class Bullet extends Floater{
 
 
 public Bullet()  {
+if(screenLock==true){
+myCenterX=400;
+myCenterY=400;
+myPointDirection=tt.getPointDirection();
+double dRadians =myPointDirection*(Math.PI/180);
+for(int i=0;i<ww.size;i++){
+myDirectionX=5 * Math.cos(dRadians) + (-ww.get().getDirectionX());
+myDirectionY=5 * Math.sin(dRadians) + (-ww.get().getDirectionY());
+} 
 
-myCenterX=
+}  
+if(screenLock==false){
+myCenterX=tt.getX();
+myCenterY=tt.getY();
+myPointDirection=tt.getPointDirection();
+double dRadians =myPointDirection*(Math.PI/180);
 
-
-
-
-
-
-
-
-
+myDirectionX=5 * Math.cos(dRadians) + (tt.get().getDirectionX());
+myDirectionY=5 * Math.sin(dRadians) + (tt.get().getDirectionY());
 }
+ 
+}
+
+  public void show(){
+fill(225);
+ellipse(myCenterX, myCenterY,10,10);
+
+  }
+
+
 
    public void setX(int x)  {myCenterX=x;}
    public int getX()   {return (int)myCenterX;}

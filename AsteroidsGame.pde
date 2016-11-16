@@ -58,16 +58,26 @@ tt.move();
  tt.show();
  rr.rotate(0);
  rr.move2(); 
+  for(int i=0;i<speed.size();i++){
+
+    speed.get(i).move();
+
+    speed.get(i).show();
+  }
   
  for(int i=0;i<ww.size();i++){
-  Double distance =Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
+ for(int j=0;j<speed.size();j++){
+  Double distance =Math.sqrt((speed.get(j).getX()-ww.get(i).getX())*(speed.get(j).getX()-ww.get(i).getX()) + (speed.get(j).getY()-ww.get(i).getY())*(speed.get(j).getY()-ww.get(i).getY()));
 if((distance<20)){
 
 ww.remove(i);
+speed.remove(j);  
 i--;
+j--;
 }  
 
 
+} 
 }
 }
 
@@ -150,6 +160,12 @@ tt.setY(400);
 
 }
 
+if(keyCode==81/*&&(Math.sqrt((speed.get(j).getX()-speed.get(j-1).getX())*(speed.get(j).getX()-speed.get(j-1).getX()) + (speed.get(j).getY()-speed.get(j-1).getY())*(speed.get(j).getY()-speed.get(j-1).getY()))>30)*/){
+ 
+speed.add (0, new Bullet());
+
+}
+
 
 } 
  
@@ -165,9 +181,9 @@ myCenterX=400;
 myCenterY=400;
 myPointDirection=tt.getPointDirection();
 double dRadians =myPointDirection*(Math.PI/180);
-for(int i=0;i<ww.size;i++){
-myDirectionX=5 * Math.cos(dRadians) + (-ww.get().getDirectionX());
-myDirectionY=5 * Math.sin(dRadians) + (-ww.get().getDirectionY());
+for(int i=0;i<ww.size();i++){
+myDirectionX=5 * Math.cos(dRadians) /*+ (-ww.get(i).getDirectionX())*/;
+myDirectionY=5 * Math.sin(dRadians) /*+ (-ww.get(i).getDirectionY())*/;
 } 
 
 }  
@@ -177,15 +193,18 @@ myCenterY=tt.getY();
 myPointDirection=tt.getPointDirection();
 double dRadians =myPointDirection*(Math.PI/180);
 
-myDirectionX=5 * Math.cos(dRadians) + (tt.get().getDirectionX());
-myDirectionY=5 * Math.sin(dRadians) + (tt.get().getDirectionY());
+myDirectionX=5 * Math.cos(dRadians) + (tt.getDirectionX());
+myDirectionY=5 * Math.sin(dRadians) + (tt.getDirectionY());
 }
  
 }
-
+public void move(){
+  myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;
+ }
   public void show(){
 fill(225);
-ellipse(myCenterX, myCenterY,10,10);
+ellipse((float)myCenterX,(float)myCenterY,1,1);
 
   }
 

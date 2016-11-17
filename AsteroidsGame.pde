@@ -162,7 +162,7 @@ tt.setY(400);
 
 if(keyCode==81/*&&(Math.sqrt((speed.get(j).getX()-speed.get(j-1).getX())*(speed.get(j).getX()-speed.get(j-1).getX()) + (speed.get(j).getY()-speed.get(j-1).getY())*(speed.get(j).getY()-speed.get(j-1).getY()))>30)*/){
  
-speed.add (0, new Bullet());
+speed.add (0, new Bullet(tt));
 
 }
 
@@ -175,7 +175,7 @@ class Bullet extends Floater{
 
 
 
-public Bullet()  {
+public Bullet( SpaceShip tt)  {
 if(screenLock==true){
 myCenterX=400;
 myCenterY=400;
@@ -193,8 +193,8 @@ myCenterY=tt.getY();
 myPointDirection=tt.getPointDirection();
 double dRadians =myPointDirection*(Math.PI/180);
 
-myDirectionX=5 * Math.cos(dRadians) + (tt.getDirectionX());
-myDirectionY=5 * Math.sin(dRadians) + (tt.getDirectionY());
+myDirectionX=12 * Math.cos(dRadians) + (tt.getDirectionX());
+myDirectionY=12 * Math.sin(dRadians) + (tt.getDirectionY());
 }
  
 }

@@ -1,14 +1,14 @@
- class Zap extends Bullet{
+ class Zap extends Floater{
 
-public Zap(SpaceShip tt){
+public Zap(){
 if(screenLock==true){
 myCenterX=400;
 myCenterY=400;
 myPointDirection=tt.getPointDirection();
 double dRadians =myPointDirection*(Math.PI/180);
 for(int i=0;i<ww.size();i++){
-myDirectionX=5 * Math.cos(dRadians) 
-myDirectionY=5 * Math.sin(dRadians) 
+myDirectionX=5 * Math.cos(dRadians); 
+myDirectionY=5 * Math.sin(dRadians);
 } 
 }
   
@@ -24,11 +24,16 @@ myDirectionY=12 * Math.sin(dRadians) + (tt.getDirectionY());
 
 
 }
+
+public void move(){
+ 
+
+
 }
 public void show(){
 double dRadians = myPointDirection*(Math.PI/180);
-int rrx=200*Math.cos(dRadians);
-int rry=200*Math.sin(dRadians);    
+double rrx=200*Math.cos(dRadians);
+double rry=200*Math.sin(dRadians);    
 
  fill(225);
 line ((float)myCenterX,(float)myCenterY,(float)rrx, (float)rry );

@@ -2,7 +2,7 @@
 
 
 
-public Bullet( SpaceShip tt)  {
+public Bullet( )  {
 if(screenLock==true){
 myCenterX=400;
 myCenterY=400;

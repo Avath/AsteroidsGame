@@ -4,8 +4,8 @@ Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
 ArrayList <Bullet> speed =new ArrayList <Bullet> (); 
 
-int ee2=0;
-Zap ee=new Zap();
+ public int ee2=0;
+Zap ee;
 public  boolean screenLock= true;
 public int counter=0;
 public void setup() 
@@ -13,7 +13,7 @@ public void setup()
   size(800, 800); 
   qq= new Star[2000];
  
-
+ee=new Zap();
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
   
@@ -166,12 +166,13 @@ tt.setY(400);
 
 if(keyCode==81){
  
-speed.add (0, new Bullet(tt));
+speed.add (0, new Bullet());
  
 }
-if(keyCode==87 ){
+if(keyCode==87&&ee2==0 ){
+ee2=120;  
 ee.show();
-ee2.
+ee2--;
 }
 
 } 

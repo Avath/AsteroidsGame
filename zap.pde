@@ -1,11 +1,11 @@
  class Zap extends Floater{
-
-public Zap(){
+double dRadians;
+public Zap(SpaceShip tt){
 if(screenLock==true){
 myCenterX=400;
 myCenterY=400;
 myPointDirection=tt.getPointDirection();
-double dRadians =myPointDirection*(Math.PI/180);
+ dRadians =myPointDirection*(Math.PI/180);
 for(int i=0;i<ww.size();i++){
 myDirectionX=5 * Math.cos(dRadians); 
 myDirectionY=5 * Math.sin(dRadians);
@@ -16,7 +16,7 @@ if(screenLock==false){
 myCenterX=tt.getX();
 myCenterY=tt.getY();
 myPointDirection=tt.getPointDirection();
-double dRadians =myPointDirection*(Math.PI/180);
+dRadians =myPointDirection*(Math.PI/180);
 
 myDirectionX=12 * Math.cos(dRadians) + (tt.getDirectionX());
 myDirectionY=12 * Math.sin(dRadians) + (tt.getDirectionY());
@@ -31,7 +31,7 @@ public void move(){
 
 }
 public void show(){
-double dRadians = myPointDirection*(Math.PI/180);
+ dRadians =myPointDirection*(Math.PI/180);
 double rrx=200*Math.cos(dRadians);
 double rry=200*Math.sin(dRadians);    
 

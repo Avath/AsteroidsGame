@@ -4,11 +4,11 @@ Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
 ArrayList <Bullet> speed =new ArrayList <Bullet> (); 
 
-public Boolean pls=false; 
-public int ewe=10;
- public int ee2=0;
+ Boolean pls=false;  
+public int e=0;
+
 Zap ee;
-public  boolean screenLock= true;
+public  boolean screenLock= false;
 public int counter=0;
 public void setup() 
 {
@@ -82,13 +82,18 @@ i--;
 j--;
 }  
 
-
 } 
 }
 
-if(pls==true&&ewe==10){
-ee.show();
+
+ if(e!=0){
+  e--;
 }
+if(pls==true){
+  ee.show();
+}
+
+
 }
 
 public void keyPressed() {
@@ -170,22 +175,25 @@ tt.setY(400);
 
 }
 
-if(keyCode==81){
+if(keyCode==81&&e==0){
  
 speed.add (0, new Bullet(tt));
+e=31;
+
  
 }
+  
 if(keyCode==87){
-ee2=120;  
 pls=true;
-ee2--;
-ewe--;
 
 }
-
+else{
+  pls=false;
+}
+ 
 } 
  
-
+  
 
 
 

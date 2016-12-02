@@ -6,8 +6,12 @@ ArrayList <Bullet> speed =new ArrayList <Bullet> ();
 
  Boolean pls=false;  
 public int e=0;
-
-Zap ee;
+public int w3=0;
+public Boolean w=false;  
+public Boolean e3=false;
+public int e5=0;
+public int e4=0;  
+public int w2=0;
 public  boolean screenLock= false;
 public int counter=0;
 public void setup() 
@@ -15,13 +19,13 @@ public void setup()
   size(800, 800); 
   qq= new Star[2000];
  
-ee=new Zap(tt);
+
   for(int i=0;i<qq.length;i++){
 qq[i] =new Star();
   
 }
 
-for(int i=0;i<200;i++){
+for(int i=0;i<80;i++){
 ww.add (i, new Asteroids());
 
 }   
@@ -73,6 +77,7 @@ tt.move();
   
  for(int i=0;i<ww.size();i++){
  for(int j=0;j<speed.size();j++){
+  Double distance2=Math.sqrt((tt.get(j).getX()-ww.get(i).getX())*(tt.get(j).getX()-ww.get(i).getX()) + (tt.get(j).getY()-ww.get(i).getY())*(tt.get(j).getY()-ww.get(i).getY()));
   Double distance =Math.sqrt((speed.get(j).getX()-ww.get(i).getX())*(speed.get(j).getX()-ww.get(i).getX()) + (speed.get(j).getY()-ww.get(i).getY())*(speed.get(j).getY()-ww.get(i).getY()));
 if((distance<20)){
 
@@ -80,20 +85,46 @@ ww.remove(i);
 speed.remove(j);  
 i--;
 j--;
+break;
 }  
+if(distance2<20&&w==false){
+  background=(225,0,0);
+}
 
 } 
 }
 
 
+
+
  if(e!=0){
   e--;
 }
-if(pls==true){
-  ee.show();
+
+if(w==true){
+fill(225,0,0,100);
+ellipse(tt.getX(),tt.getY(), 30, 30 );
+ w3=540;
+ w2--;
+}
+if(w2==0){
+  w=false;
+  
+}
+if(w3!=0){
+  w3--;
 }
 
-
+if(e3==true){
+  e4--;
+  e5=540;
+}
+if(e4==0){
+  e3=false;
+}
+if(e5!=0){
+  e5--;
+}
 }
 
 public void keyPressed() {
@@ -178,19 +209,22 @@ tt.setY(400);
 if(keyCode==81&&e==0){
  
 speed.add (0, new Bullet(tt));
+if(e3==false){
 e=31;
-
- 
-}
-  
-if(keyCode==87){
-pls=true;
-
-}
-else{
-  pls=false;
 }
  
+}
+  if(keyCode==69&&w3==0 ){
+ w=true;
+w2=120;
+  } 
+   
+ 
+ if(keyCode==87)
+  e3=true;
+ e4=300;
+
+
 } 
  
   

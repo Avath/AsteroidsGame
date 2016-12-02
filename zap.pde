@@ -36,7 +36,7 @@ double rrx=200*Math.cos(dRadians);
 double rry=200*Math.sin(dRadians);    
 
  fill(225);
-line ((float)myCenterX,(float)myCenterY,(float)rrx, (float)rry );
+line ((float)myCenterX,(float)myCenterY,(float)rrx,(float)rry);
 
 
 

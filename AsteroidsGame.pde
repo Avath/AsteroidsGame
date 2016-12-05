@@ -6,12 +6,12 @@ ArrayList <Bullet> speed =new ArrayList <Bullet> ();
 
  Boolean pls=false;  
 public int e=0;
-public int w3=0;
-public Boolean w=false;  
-public Boolean e3=false;
-public int e5=0;
-public int e4=0;  
-public int w2=0;
+public int shieldCooldownTimer=0;
+public Boolean shield=false;  
+public Boolean atspBuff=false;
+public int atspCooldown=0;
+public int atspBuffTimer=0;  
+public int shieldTimer=0;
 public  boolean screenLock= false;
 public int counter=0;
 public void setup() 
@@ -77,7 +77,7 @@ tt.move();
   
  for(int i=0;i<ww.size();i++){
  for(int j=0;j<speed.size();j++){
-  Double distance2=Math.sqrt((tt.get(j).getX()-ww.get(i).getX())*(tt.get(j).getX()-ww.get(i).getX()) + (tt.get(j).getY()-ww.get(i).getY())*(tt.get(j).getY()-ww.get(i).getY()));
+  Double distance2=Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
   Double distance =Math.sqrt((speed.get(j).getX()-ww.get(i).getX())*(speed.get(j).getX()-ww.get(i).getX()) + (speed.get(j).getY()-ww.get(i).getY())*(speed.get(j).getY()-ww.get(i).getY()));
 if((distance<20)){
 
@@ -87,55 +87,59 @@ i--;
 j--;
 break;
 }  
-if(distance2<20&&w==false){
-  background=(225,0,0);
-}
+
+
 
 } 
 }
-
-
+if(distance2<20&&shield==false){
+  background(225,0,0);
+}
 
 
  if(e!=0){
   e--;
 }
 
-if(w==true){
+if(shield==true){
 fill(225,0,0,100);
 ellipse(tt.getX(),tt.getY(), 30, 30 );
- w3=540;
- w2--;
-}
-if(w2==0){
-  w=false;
-  
-}
-if(w3!=0){
-  w3--;
+ shieldCooldownTimer=540;
+ shieldTimer--;
 }
 
-if(e3==true){
-  e4--;
-  e5=540;
+
+if(shieldTimer==0){
+  shield=false;
+
+  
 }
-if(e4==0){
-  e3=false;
+if(shieldCooldownTimer!=0){
+  shieldCooldownTimer--;
 }
-if(e5!=0){
-  e5--;
+
+if(atspBuff==true){
+  atspCooldown=540;
+  atspBuffTimer--;
+  
+}
+if(atspBuffTimer==0){
+  atspBuff=false;
+}
+if(atspCooldown!=0){
+  atspCooldown--;
 }
 }
 
 public void keyPressed() {
   if(screenLock==true){
  if( keyCode==LEFT)
-  {tt.rotate(-5);
-    rr.rotate(-5);}
+  {tt.rotate(-11);
+    rr.rotate(-11);}
     
 if( keyCode==RIGHT) 
-  {tt.rotate(5);
-  rr.rotate(5);}
+  {tt.rotate(11);
+  rr.rotate(11);}
 
  
   for(int j=0;j<ww.size() ;j++){
@@ -164,10 +168,10 @@ if(keyCode==83)
 }
 if(screenLock==false){
  if( keyCode==LEFT)
-  {tt.rotate(-5);}
+  {tt.rotate(-11);}
   
 if( keyCode==RIGHT) 
-  {tt.rotate(5);}
+  {tt.rotate(11);}
  
 if( keyCode==DOWN)
   {tt.accelerate(-0.2);}
@@ -209,20 +213,21 @@ tt.setY(400);
 if(keyCode==81&&e==0){
  
 speed.add (0, new Bullet(tt));
-if(e3==false){
+if(atspBuff==false){
 e=31;
 }
  
 }
-  if(keyCode==69&&w3==0 ){
- w=true;
-w2=120;
+  if(keyCode==69&&shieldCooldownTimer==0 ){
+ shield=true;
+shieldTimer=120;
   } 
    
  
- if(keyCode==87)
-  e3=true;
- e4=300;
+ if(keyCode==87&&atspCooldown==0){
+  atspBuff=true;
+ atspBuffTimer=300;
+}
 
 
 } 

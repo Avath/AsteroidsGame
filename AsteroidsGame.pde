@@ -4,11 +4,15 @@ Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
 ArrayList <Bullet> speed =new ArrayList <Bullet> (); 
 
- Boolean pls=false;  
+
+public double distance=0;
+public double distance2=20;   
+public Boolean pls=false;  
+public Boolean reignover =false; 
 public int e=0;
 public int shieldCooldownTimer=0;
 public Boolean shield=false;  
-public Boolean atspBuff=false;
+public Boolean atspBuff=false;   
 public int atspCooldown=0;
 public int atspBuffTimer=0;  
 public int shieldTimer=0;
@@ -27,6 +31,8 @@ qq[i] =new Star();
 
 for(int i=0;i<80;i++){
 ww.add (i, new Asteroids());
+
+
 
 }   
 
@@ -77,8 +83,9 @@ tt.move();
   
  for(int i=0;i<ww.size();i++){
  for(int j=0;j<speed.size();j++){
-  Double distance2=Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
-  Double distance =Math.sqrt((speed.get(j).getX()-ww.get(i).getX())*(speed.get(j).getX()-ww.get(i).getX()) + (speed.get(j).getY()-ww.get(i).getY())*(speed.get(j).getY()-ww.get(i).getY()));
+   distance2 = Math.sqrt((tt.getX()-ww.get(i).getX())*(tt.getX()-ww.get(i).getX()) + (tt.getY()-ww.get(i).getY())*(tt.getY()-ww.get(i).getY()));
+
+   distance =Math.sqrt((speed.get(j).getX()-ww.get(i).getX())*(speed.get(j).getX()-ww.get(i).getX()) + (speed.get(j).getY()-ww.get(i).getY())*(speed.get(j).getY()-ww.get(i).getY()));
 if((distance<20)){
 
 ww.remove(i);
@@ -88,14 +95,22 @@ j--;
 break;
 }  
 
+  
+
 
 
 } 
 }
+
+
 if(distance2<20&&shield==false){
-  background(225,0,0);
+  reignover=true;
 }
 
+
+if(distance2<20&&shield==true){
+  shieldTimer=0; 
+}
 
  if(e!=0){
   e--;
@@ -128,6 +143,15 @@ if(atspBuffTimer==0){
 }
 if(atspCooldown!=0){
   atspCooldown--;
+}
+
+
+if(reignover==true){
+
+  background(225,0,0);
+  stroke(20);
+  textSize(72);
+  text("GAME OVER", 100,400);
 }
 }
 

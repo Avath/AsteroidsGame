@@ -4,12 +4,16 @@ Star [] qq;
 ArrayList <Asteroids> ww= new ArrayList <Asteroids> ();
 ArrayList <Bullet> speed =new ArrayList <Bullet> (); 
 
-
+ 
 public double distance=0;
 public double distance2=20;   
 public Boolean pls=false;  
 public Boolean reignover =false; 
 public int e=0;
+public int rre;
+public int rrr;
+public int rrt;
+public int rru;
 public int shieldCooldownTimer=0;
 public Boolean shield=false;  
 public Boolean atspBuff=false;   
@@ -49,10 +53,46 @@ public void draw()
 }
   for(int i=0;i<ww.size();i++){
 ww.get(i).move();
-if(screenLock==true){
-ww.get(i).setDirectionX(-rr.getDirectionX());
-ww.get(i).setDirectionY(-rr.getDirectionY());
+
+
+if(ww.get(i).getX()>400){
+rre=-1;
 }
+if(ww.get(i).getX()<400){
+rre=1;
+}
+if(ww.get(i).getY()>400){
+rrr=-1;
+} 
+if(ww.get(i).getY()<400){
+rrr=1;
+}
+if(screenLock==true){
+  
+ww.get(i).setDirectionX(-rr.getDirectionX()+rre);
+ww.get(i).setDirectionY(-rr.getDirectionY()+rrr);
+
+}
+
+if(ww.get(i).getX()>tt.getX()){
+rru=3;
+}
+if(ww.get(i).getX()<tt.getX()){
+rru=-3;
+}
+if(ww.get(i).getX()>tt.getY()){
+rrt=3;
+}
+if(ww.get(i).getX()>tt.getY()){ 
+rrt=-3;
+}
+if(screenLock==false){
+ww.get(i).setDirectionY(rrt);
+ww.get(i).setDirectionX(rru);
+
+
+}
+
 
 
 ww.get(i).show();
